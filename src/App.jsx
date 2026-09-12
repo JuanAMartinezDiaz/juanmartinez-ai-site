@@ -754,6 +754,12 @@ export default function JuanProfessionalLandingPage() {
 
   const povItems = [
     {
+      title: 'Every AI Agent Needs a Manager. Here Is What the Job Actually Requires.',
+      text: 'A practical guide to ownership, delegated authority, daily supervision, and evidence.',
+      href: '/agent-managers-human-oversight',
+      status: 'New AI governance feature'
+    },
+    {
       title: 'Practical AI Governance and Executive Judgment in Regulated Environments',
       text: 'How leaders can adopt artificial intelligence without losing control, credibility, or execution discipline.',
       href: '#flagship',

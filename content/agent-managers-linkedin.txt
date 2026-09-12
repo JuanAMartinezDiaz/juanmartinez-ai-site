@@ -1,0 +1,18 @@
+One of the most important questions in an AI deployment is also one of the simplest: who manages it after it goes live? Keeping the technology running is only part of the responsibility.
+
+An Agent Manager should understand what the agent has been asked to accomplish, what authority it has, and what evidence is needed to trust its work. That includes looking beyond the exceptions it raises and examining the work it considers complete. A system that reports no problems still needs someone capable of challenging that conclusion.
+
+My experience in Army leadership and banking risk has made me cautious about assigning responsibility without giving someone the authority and time to exercise it. Putting a person's name beside an AI system does not, by itself, create meaningful oversight.
+
+There is a real banking example. In October 2025, BNY reported deploying more than 100 digital employees with defined personas, credentials, and supervisors. What stands out to me is not the number. It is the recognition that software doing work needs a defined place in the operating model.
+
+Consider a technology-risk review. An agent finds records showing that backups ran successfully and drafts a reassuring conclusion about recovery readiness. An experienced reviewer asks a different question: where is the evidence that restoration was actually tested? This is an illustrative scenario, but it captures the kind of judgment I would expect an Agent Manager to bring.
+
+The job should include defining what the agent may do, examining work it did not flag, and stopping it when the evidence no longer supports continued operation. Engineering support matters. So do clear decision rights and protected review time.
+
+My view is that the management challenge does not disappear as agents become more capable. We need to become more precise about the work we delegate and the responsibility we retain. Before your next agent goes live, could its manager explain when to stop it—and what would justify restarting it?
+
+#AgenticAI #AIGovernance #RiskManagement
+
+Read the full feature: Every AI Agent Needs a Manager. Here Is What the Job Actually Requires.
+https://www.juanmartinez.ai/agent-managers-human-oversight

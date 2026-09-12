@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/agent-managers-human-oversight",
+      "destination": "/agent-managers-human-oversight/index.html"
+    },
+    {
       "source": "/admin/content-analytics",
       "destination": "/admin/content-analytics/index.html"
     },
