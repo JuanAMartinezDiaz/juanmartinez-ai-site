@@ -403,6 +403,12 @@ function ExecutiveHomePage() {
 
   const insights = [
     {
+      date: 'September 18, 2026',
+      title: 'Before You Give an AI Agent Authority',
+      text: 'A practical guide to permissions, human review, recovery, and workflow improvement, with a readiness assessment for your team.',
+      href: '/before-you-give-an-ai-agent-authority/'
+    },
+    {
       date: 'August 17, 2026',
       title: 'When AI Joins the Cyber Defense Team: What Changes in a Manufacturing Environment?',
       text: 'Using AI to accelerate investigation without surrendering evidence, operational judgment, or human authority.',

@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/before-you-give-an-ai-agent-authority",
+      "destination": "/before-you-give-an-ai-agent-authority/index.html"
+    },
+    {
+      "source": "/before-you-give-an-ai-agent-authority/",
+      "destination": "/before-you-give-an-ai-agent-authority/index.html"
+    },
+    {
       "source": "/agent-managers-human-oversight",
       "destination": "/agent-managers-human-oversight/index.html"
     },
