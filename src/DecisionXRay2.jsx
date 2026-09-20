@@ -1,75 +1,44 @@
 import { useEffect, useRef, useState } from 'react';
+import './DecisionXRay2.css';
 
+const descriptions={
+  scan:{title:'Look inside the decision.',text:'The cutaway exposes the evidence carrier, control assembly and amber D07 authority core. The moving cyan section scans the physical shell; it does not authorize an action.'},
+  explode:{title:'See how the parts connect.',text:'The shell panels separate and the nested assemblies move forward. Evidence supports the decision; controls constrain the route; consequential authority remains with a person.'},
+  sentinel:{title:'Make the boundary explicit.',text:'In this illustrative redesign, the redundant route disappears and the evidence path becomes continuous. The amber action stops at the authority gate until you simulate approval.'}
+};
 export default function DecisionXRay2(){
-  const mount=useRef(null);
-  const [mode,setMode]=useState('scan');
-  const [scan,setScan]=useState(false);
-  const [ready,setReady]=useState(false);
-
+  const mount=useRef(null),api=useRef(null);
+  const [mode,setMode]=useState('scan'),[status,setStatus]=useState('loading'),[approved,setApproved]=useState(false);
+  const [paused,setPaused]=useState(()=>typeof window!=='undefined'&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   useEffect(()=>{
-    let alive=true,renderer,frame,cleanup=()=>{};
-    (async()=>{
-      try{
-        const THREE=await import('https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js');
-        if(!alive||!mount.current)return;
-        const el=mount.current, scene=new THREE.Scene();
-        const camera=new THREE.PerspectiveCamera(31,1,.1,100);camera.position.set(0,.25,8.8);
-        renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
-        renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor(0x000000,0);el.appendChild(renderer.domElement);
-        scene.add(new THREE.AmbientLight(0x8eb9ff,1.35));
-        const blue=new THREE.PointLight(0x45dfff,45,16);blue.position.set(3,4,5);scene.add(blue);
-        const amber=new THREE.PointLight(0xffad38,38,13);amber.position.set(-2,1,4);scene.add(amber);
-        const root=new THREE.Group();scene.add(root);
-        const shellMat=new THREE.MeshPhysicalMaterial({color:0x172231,metalness:.9,roughness:.2,clearcoat:1,clearcoatRoughness:.12});
-        const glassMat=new THREE.MeshPhysicalMaterial({color:0x36cfff,metalness:.25,roughness:.08,transparent:true,opacity:.2,emissive:0x0b79a8,emissiveIntensity:.75,side:THREE.DoubleSide});
-        const shellGeo=new THREE.SphereGeometry(2.35,64,32,0,Math.PI*.88);
-        const left=new THREE.Mesh(shellGeo,shellMat);left.rotation.y=Math.PI*.56;root.add(left);
-        const right=new THREE.Mesh(shellGeo,shellMat);right.rotation.y=-Math.PI*.56;right.scale.x=-1;root.add(right);
-        const inner=new THREE.Mesh(new THREE.SphereGeometry(1.72,48,24),glassMat);root.add(inner);
-        for(let i=0;i<4;i++){
-          const ring=new THREE.Mesh(new THREE.TorusGeometry(1.05+i*.27,.025,10,100),new THREE.MeshBasicMaterial({color:i===2?0xffb43c:0x46d9ff,transparent:true,opacity:.48}));
-          ring.rotation.set(Math.PI/2,i*.42,i*.25);root.add(ring);
-        }
-        const coreMat=new THREE.MeshPhysicalMaterial({color:0xffb02e,metalness:.65,roughness:.12,emissive:0xff8a00,emissiveIntensity:2.2,clearcoat:1});
-        const core=new THREE.Mesh(new THREE.OctahedronGeometry(.48,1),coreMat);root.add(core);
-        const scanPlane=new THREE.Mesh(new THREE.CircleGeometry(2.48,64),new THREE.MeshBasicMaterial({color:0x46dfff,transparent:true,opacity:.14,side:THREE.DoubleSide}));
-        scanPlane.rotation.y=Math.PI/2;scanPlane.position.x=0;root.add(scanPlane);
-        const pedestal=new THREE.Mesh(new THREE.CylinderGeometry(2.05,2.35,.3,64),shellMat);pedestal.position.y=-2.55;scene.add(pedestal);
-        const halo=new THREE.Mesh(new THREE.TorusGeometry(2.15,.025,8,100),new THREE.MeshBasicMaterial({color:0x45dfff,transparent:true,opacity:.35}));halo.rotation.x=Math.PI/2;halo.position.y=-2.38;scene.add(halo);
-        let drag=false,last=0;
-        const down=e=>{drag=true;last=e.clientX},up=()=>drag=false,move=e=>{if(drag){root.rotation.y+=(e.clientX-last)*.006;last=e.clientX}};
-        el.addEventListener('pointerdown',down);window.addEventListener('pointerup',up);window.addEventListener('pointermove',move);
-        const resize=()=>{const w=el.clientWidth,h=Math.max(360,Math.min(520,w*.76));renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()};resize();const ro=new ResizeObserver(resize);ro.observe(el);
-        const clock=new THREE.Clock();
-        const animate=()=>{if(!alive)return;const t=clock.getElapsedTime();if(!drag)root.rotation.y+=.0014;core.rotation.y=t*.45;core.rotation.x=t*.23;core.scale.setScalar(1+Math.sin(t*2)*.045);scanPlane.position.x=Math.sin(t*.7)*1.9;
-          const explode=mode==='explode'?1:mode==='sentinel'?.35:0;left.position.x+=( -explode-left.position.x)*.035;right.position.x+=(explode-right.position.x)*.035;
-          renderer.render(scene,camera);frame=requestAnimationFrame(animate)};animate();setReady(true);
-        cleanup=()=>{ro.disconnect();el.removeEventListener('pointerdown',down);window.removeEventListener('pointerup',up);window.removeEventListener('pointermove',move);renderer.dispose();renderer.domElement.remove()};
-      }catch(e){setReady(false)}
-    })();return()=>{alive=false;cancelAnimationFrame(frame);cleanup()};
-  },[mode]);
-
-  const run=()=>{setScan(true);setTimeout(()=>setScan(false),1800)};
-  return <div className="overflow-hidden rounded-[1.6rem] border border-cyan-300/25 bg-[#020812]">
-    <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
-      <div><p className="text-[10px] font-semibold tracking-[.3em] text-cyan-300">DECISION X-RAY 2.0</p><p className="mt-1 text-[11px] text-slate-400">See the decision before you commit.</p></div>
-      <button onClick={run} className="rounded-full border border-cyan-300/40 bg-cyan-300/10 px-4 py-2 text-[10px] font-semibold text-cyan-100">{scan?'SCANNING…':'RUN X-RAY'}</button>
+    let cancelled=false,instance;
+    import('./decisionInstrument.js').then(({createDecisionInstrument})=>{
+      if(cancelled||!mount.current)return;
+      instance=createDecisionInstrument(mount.current,s=>{if(!cancelled)setStatus(s);});api.current=instance;
+    }).catch(error=>{console.error('Decision X-Ray could not start:',error);if(!cancelled)setStatus('error');});
+    return()=>{cancelled=true;instance?.dispose();api.current=null;};
+  },[]);
+  useEffect(()=>{api.current?.setPaused(paused);},[paused,status]);
+  const changeMode=value=>{setMode(value);setApproved(false);api.current?.setMode(value);};
+  const rescan=()=>{changeMode('scan');setPaused(false);api.current?.rescan();};
+  const approve=()=>{if(mode!=='sentinel')return;api.current?.approve();setApproved(true);};
+  return <section className="dx-shell" aria-label="Decision X-Ray interactive study">
+    <header className="dx-brand"><a href="/">JUAN MARTINEZ<span>DECISION X-RAY</span></a><span className="dx-edition">INTERACTIVE STUDY / 01</span></header>
+    <div className="dx-heading"><div><p className="dx-eyebrow">DECISION TOMOGRAPHY</p><h2>The decision, revealed.</h2></div><p>A precision cutaway of the evidence, controls<br className="dx-desktop"/> and human authority inside one decision.</p></div>
+    <div className="dx-stage-wrap">
+      <div className="dx-stage" ref={mount} role="img" aria-label="Moving three-dimensional mechanical cutaway with a visible amber D07 authority core" tabIndex="0" onKeyDown={e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();api.current?.inspect(e.key==='ArrowLeft'?-1:1);}}}/>
+      {status!=='ready'&&<div className="dx-fallback" role="status">{status==='loading'?'Preparing the 3D instrument…':'The 3D renderer is unavailable in this browser. Please reload with hardware acceleration enabled.'}</div>}
+      <div className="dx-stage-caption"><span className="dx-dot"/> {mode==='scan'?'SECTION SCAN':mode==='explode'?'ASSEMBLY INSPECTION':'GOVERNED REDESIGN'}<span className="dx-material">GRAPHITE / CYAN / AMBER</span></div>
+      <div className="dx-annotations" aria-hidden="true"><div><i/>01 <strong>Evidence carrier</strong><small>What supports the decision</small></div><div><i/>02 <strong>Control assembly</strong><small>What constrains the action</small></div><div className="dx-gold"><i/>03 <strong>D07 · Human authority</strong><small>{approved?'Approval simulated':'Reserved for a person'}</small></div></div>
+      <div className="dx-viewhint">Drag to inspect · Arrow keys also work</div>
+      <div className="dx-state"><span className="dx-dot dx-amber"/>{approved?'Authorization simulated':'D07 · Human approval required'}</div>
     </div>
-    <div className="relative">
-      <div ref={mount} className="min-h-[360px] w-full cursor-grab bg-[radial-gradient(circle_at_50%_48%,rgba(25,108,166,.16),transparent_52%)] active:cursor-grabbing"/>
-      {!ready&&<div className="absolute inset-0 grid place-items-center text-xs text-slate-500">Loading decision artifact…</div>}
-      <div className="pointer-events-none absolute left-4 top-4 rounded-xl border border-white/10 bg-[#020812]/75 px-3 py-2 backdrop-blur">
-        <p className="text-[9px] tracking-[.16em] text-slate-500">SELECTED DECISION</p><p className="mt-1 text-base font-semibold text-amber-100">D07</p><p className="text-[9px] text-slate-300">Human authority required</p>
-      </div>
-      <div className="pointer-events-none absolute bottom-4 right-4 text-right text-[9px] text-slate-500">Drag to rotate<br/>X-ray plane scans continuously</div>
-      {scan&&<div className="pointer-events-none absolute inset-y-0 left-1/2 w-px bg-cyan-200 shadow-[0_0_28px_10px_rgba(66,220,255,.35)]"/>}
-    </div>
-    <div className="grid grid-cols-3 border-t border-white/10">
-      {['scan','explode','sentinel'].map(x=><button key={x} onClick={()=>setMode(x)} className={`px-2 py-3 text-[9px] uppercase tracking-[.1em] ${mode===x?'bg-cyan-300/10 text-cyan-200':'text-slate-500'}`}>{x==='sentinel'?'Sentinel redesign':x}</button>)}
-    </div>
-    <div className="flex items-center justify-between gap-3 border-t border-white/10 px-4 py-3">
-      <p className="text-[9px] text-slate-400">Cyan reveals structure. Amber marks consequential authority.</p>
-      <p className="text-[9px] font-medium text-amber-100">D07 · AUTHORITY REQUIRED</p>
-    </div>
-  </div>
+    <div className="dx-controls"><div className="dx-modes" role="group" aria-label="Inspection mode">
+      <button aria-pressed={mode==='scan'} onClick={()=>changeMode('scan')}>01 <span>Cutaway scan</span></button>
+      <button aria-pressed={mode==='explode'} onClick={()=>changeMode('explode')}>02 <span>Exploded view</span></button>
+      <button aria-pressed={mode==='sentinel'} onClick={()=>changeMode('sentinel')}>03 <span>Sentinel redesign</span></button>
+    </div><div className="dx-motion"><button onClick={()=>setPaused(p=>!p)} aria-pressed={paused}>{paused?'Play motion':'Pause motion'}</button><button onClick={()=>api.current?.reset()}>Reset view</button></div></div>
+    <div className="dx-story" aria-live="polite"><div><p className="dx-eyebrow">{mode==='sentinel'?'ILLUSTRATIVE TRANSFORMATION':'INSIDE THE INSTRUMENT'}</p><h3>{approved?'Approval changes the permitted path.':descriptions[mode].title}</h3></div><p>{approved?'The amber signal can now pass the gate in this synthetic demonstration. No real decision is approved, no client system is connected, and no business action is executed.':descriptions[mode].text}</p><div className="dx-action">{mode==='sentinel'?<button disabled={approved||status!=='ready'} onClick={approve}>{approved?'Approval simulated':'Simulate human approval'}<span aria-hidden="true"> →</span></button>:<button disabled={status!=='ready'} onClick={rescan}>Restart scan<span aria-hidden="true"> ↗</span></button>}</div></div>
+    <footer className="dx-foot"><p>Visual prototype · Synthetic example: authorizing a strategic partnership.</p><p>No live risk rating or runtime-enforcement claim.</p></footer>
+  </section>;
 }

@@ -1,0 +1,83 @@
+{
+  "checkedAt": "2026-09-20T23:49:43.901Z",
+  "browser": "153.0.4234.32",
+  "tests": [
+    {
+      "name": "Actual WebGL frames advance",
+      "pass": true
+    },
+    {
+      "name": "Exactly one canvas",
+      "pass": true
+    },
+    {
+      "name": "Pause holds the rendered image",
+      "pass": true
+    },
+    {
+      "name": "Exploded mode selected",
+      "pass": true
+    },
+    {
+      "name": "Redesign mode selected",
+      "pass": true
+    },
+    {
+      "name": "Approval is explicitly simulated",
+      "pass": true
+    },
+    {
+      "name": "Approval animation state changed",
+      "pass": true
+    },
+    {
+      "name": "Mode switching does not recreate canvases",
+      "pass": true
+    },
+    {
+      "name": "Keyboard inspection changes view",
+      "pass": true
+    },
+    {
+      "name": "No horizontal overflow at 320px",
+      "pass": true
+    },
+    {
+      "name": "Canvas matches its container at 320px",
+      "pass": true
+    },
+    {
+      "name": "No horizontal overflow at 390px",
+      "pass": true
+    },
+    {
+      "name": "Canvas matches its container at 390px",
+      "pass": true
+    },
+    {
+      "name": "No horizontal overflow at 768px",
+      "pass": true
+    },
+    {
+      "name": "Canvas matches its container at 768px",
+      "pass": true
+    },
+    {
+      "name": "Reduced-motion preference starts paused",
+      "pass": true
+    },
+    {
+      "name": "Reduced-motion scene remains still",
+      "pass": true
+    },
+    {
+      "name": "No-WebGL fallback explains failure instead of hanging",
+      "pass": true
+    },
+    {
+      "name": "No unexpected browser JavaScript or console errors",
+      "pass": true
+    }
+  ],
+  "errors": []
+}
