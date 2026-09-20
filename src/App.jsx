@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { track } from '@vercel/analytics';
 import { Analytics } from '@vercel/analytics/react';
 import { articleAnalyticsBySlug, contentAnalyticsDashboardPath } from './articleAnalyticsConfig';
+import DecisionXRay2 from './DecisionXRay2';
 
 const getSlugFromArticle = (article) => (
   article?.slug || article?.articleAnchorOrUrl?.replace(/^#|\//, '') || ''
@@ -341,18 +342,6 @@ function MartinezMethodPage() {
 }
 
 function ExecutiveHomePage() {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() => (
-    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  ));
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const updateMotionPreference = () => setPrefersReducedMotion(mediaQuery.matches);
-
-    updateMotionPreference();
-    mediaQuery.addEventListener('change', updateMotionPreference);
-    return () => mediaQuery.removeEventListener('change', updateMotionPreference);
-  }, []);
 
   const impactItems = [
     {
@@ -491,32 +480,7 @@ function ExecutiveHomePage() {
               </div>
             </div>
             <aside className="rounded-[2rem] border border-[color:var(--oc-line)] bg-[rgba(8,16,31,0.76)] p-5 shadow-[0_18px_50px_rgba(0,0,0,0.3),0_0_24px_rgba(67,231,255,0.08)] md:p-6">
-              <figure className="decision-xray-card overflow-hidden rounded-[1.5rem] border border-[color:var(--oc-line-strong)] bg-[#050d1c]">
-                {prefersReducedMotion ? (
-                  <img
-                    className="decision-xray-poster aspect-video w-full object-cover"
-                    src="/decision-xray/decision-xray-poster.png"
-                    width="1920"
-                    height="1080"
-                    alt="Blue Decision Core X-Ray Bloom showing intelligence examined through five governance layers and retained as amber evidence."
-                    loading="eager"
-                  />
-                ) : (
-                  <video
-                    className="decision-xray-video aspect-video w-full object-cover"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    poster="/decision-xray/decision-xray-poster.png"
-                    aria-label="Blue Decision Core X-Ray Bloom animation showing intelligence examined through five governance layers and retained as amber evidence."
-                  >
-                    <source src="/decision-xray/decision-xray-hero.webm" type="video/webm" />
-                    <source src="/decision-xray/decision-xray-hero.mp4" type="video/mp4" />
-                  </video>
-                )}
-              </figure>
+              <DecisionXRay2 />
               <div className="mt-6 flex items-center gap-4">
                 <div aria-hidden="true" className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[color:var(--oc-line-strong)] bg-[linear-gradient(135deg,rgba(255,203,107,0.16),rgba(67,231,255,0.14))] text-sm font-semibold tracking-[0.14em] text-white">JMD</div>
                 <div>
