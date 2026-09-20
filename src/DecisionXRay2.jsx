@@ -1,91 +1,75 @@
 import { useEffect, useRef, useState } from 'react';
 
-const layers = ['Operations','Decisions','Authority','Controls','Evidence'];
-const copy = {
-  Operations:'What happens across the workflow',
-  Decisions:'Where judgment changes the path',
-  Authority:'Who is permitted to act',
-  Controls:'What constrains consequential action',
-  Evidence:'What proves what happened'
-};
-
 export default function DecisionXRay2(){
-  const mount=useRef(null), sceneRef=useRef(null);
-  const [depth,setDepth]=useState('Authority');
-  const [selected,setSelected]=useState('D07');
-  const [ready,setReady]=useState(false);
+  const mount=useRef(null);
+  const [mode,setMode]=useState('scan');
   const [scan,setScan]=useState(false);
+  const [ready,setReady]=useState(false);
 
   useEffect(()=>{
-    let alive=true, renderer, frame, cleanup=()=>{};
+    let alive=true,renderer,frame,cleanup=()=>{};
     (async()=>{
       try{
         const THREE=await import('https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js');
         if(!alive||!mount.current)return;
         const el=mount.current, scene=new THREE.Scene();
-        const camera=new THREE.PerspectiveCamera(34,1,.1,100); camera.position.set(0,2.6,8.8);
+        const camera=new THREE.PerspectiveCamera(31,1,.1,100);camera.position.set(0,.25,8.8);
         renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
-        renderer.setPixelRatio(Math.min(devicePixelRatio,2)); renderer.setClearColor(0x000000,0);
-        el.appendChild(renderer.domElement);
-        const root=new THREE.Group(); root.rotation.x=-.12; scene.add(root); sceneRef.current={root,THREE};
-        scene.add(new THREE.AmbientLight(0x7aa7ff,1.15));
-        const key=new THREE.PointLight(0x38d8ff,35,18); key.position.set(4,4,5); scene.add(key);
-        const warm=new THREE.PointLight(0xffc45c,22,12); warm.position.set(-3,1,3); scene.add(warm);
-        const mats=[
-          new THREE.MeshPhysicalMaterial({color:0x153a67,metalness:.65,roughness:.22,transparent:true,opacity:.52,emissive:0x0b284c,emissiveIntensity:.7}),
-          new THREE.MeshPhysicalMaterial({color:0x15547b,metalness:.6,roughness:.2,transparent:true,opacity:.48,emissive:0x0d4d6c,emissiveIntensity:.65})
-        ];
-        for(let i=0;i<5;i++){
-          const ring=new THREE.Mesh(new THREE.TorusGeometry(2.55-i*.06,.035,12,120),mats[i%2]);
-          ring.position.y=(2-i)*.92; ring.rotation.x=Math.PI/2; root.add(ring);
-          const disc=new THREE.Mesh(new THREE.CylinderGeometry(2.3,2.3,.035,72),mats[(i+1)%2]);
-          disc.position.y=ring.position.y; disc.material=disc.material.clone(); disc.material.opacity=.08; root.add(disc);
-          for(let n=0;n<5;n++){
-            const a=n/5*Math.PI*2+i*.35;
-            const node=new THREE.Mesh(new THREE.IcosahedronGeometry(.11,1),new THREE.MeshStandardMaterial({color:0x71ddff,emissive:0x2abfff,emissiveIntensity:2}));
-            node.position.set(Math.cos(a)*1.72,ring.position.y+.12,Math.sin(a)*1.72); root.add(node);
-          }
+        renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor(0x000000,0);el.appendChild(renderer.domElement);
+        scene.add(new THREE.AmbientLight(0x8eb9ff,1.35));
+        const blue=new THREE.PointLight(0x45dfff,45,16);blue.position.set(3,4,5);scene.add(blue);
+        const amber=new THREE.PointLight(0xffad38,38,13);amber.position.set(-2,1,4);scene.add(amber);
+        const root=new THREE.Group();scene.add(root);
+        const shellMat=new THREE.MeshPhysicalMaterial({color:0x172231,metalness:.9,roughness:.2,clearcoat:1,clearcoatRoughness:.12});
+        const glassMat=new THREE.MeshPhysicalMaterial({color:0x36cfff,metalness:.25,roughness:.08,transparent:true,opacity:.2,emissive:0x0b79a8,emissiveIntensity:.75,side:THREE.DoubleSide});
+        const shellGeo=new THREE.SphereGeometry(2.35,64,32,0,Math.PI*.88);
+        const left=new THREE.Mesh(shellGeo,shellMat);left.rotation.y=Math.PI*.56;root.add(left);
+        const right=new THREE.Mesh(shellGeo,shellMat);right.rotation.y=-Math.PI*.56;right.scale.x=-1;root.add(right);
+        const inner=new THREE.Mesh(new THREE.SphereGeometry(1.72,48,24),glassMat);root.add(inner);
+        for(let i=0;i<4;i++){
+          const ring=new THREE.Mesh(new THREE.TorusGeometry(1.05+i*.27,.025,10,100),new THREE.MeshBasicMaterial({color:i===2?0xffb43c:0x46d9ff,transparent:true,opacity:.48}));
+          ring.rotation.set(Math.PI/2,i*.42,i*.25);root.add(ring);
         }
-        const coreMat=new THREE.MeshPhysicalMaterial({color:0xffc75c,metalness:.75,roughness:.16,emissive:0xffa928,emissiveIntensity:1.7});
-        const core=new THREE.Mesh(new THREE.OctahedronGeometry(.45,0),coreMat); core.position.y=.46; root.add(core);
-        const beam=new THREE.Mesh(new THREE.CylinderGeometry(.018,.018,4.1,12),new THREE.MeshBasicMaterial({color:0xffc75c,transparent:true,opacity:.65}));
-        beam.position.y=.2; root.add(beam);
-        const grid=new THREE.GridHelper(7,18,0x16466d,0x0b2138); grid.position.y=-2.15; scene.add(grid);
-        let drag=false,lastX=0;
-        const down=e=>{drag=true;lastX=e.clientX;}; const up=()=>drag=false;
-        const move=e=>{if(drag){root.rotation.y+=(e.clientX-lastX)*.008;lastX=e.clientX;}};
-        el.addEventListener('pointerdown',down); window.addEventListener('pointerup',up); window.addEventListener('pointermove',move);
-        const resize=()=>{const w=el.clientWidth,h=Math.max(330,Math.min(480,w*.72)); renderer.setSize(w,h,false); camera.aspect=w/h;camera.updateProjectionMatrix();};
-        resize(); const ro=new ResizeObserver(resize);ro.observe(el);
+        const coreMat=new THREE.MeshPhysicalMaterial({color:0xffb02e,metalness:.65,roughness:.12,emissive:0xff8a00,emissiveIntensity:2.2,clearcoat:1});
+        const core=new THREE.Mesh(new THREE.OctahedronGeometry(.48,1),coreMat);root.add(core);
+        const scanPlane=new THREE.Mesh(new THREE.CircleGeometry(2.48,64),new THREE.MeshBasicMaterial({color:0x46dfff,transparent:true,opacity:.14,side:THREE.DoubleSide}));
+        scanPlane.rotation.y=Math.PI/2;scanPlane.position.x=0;root.add(scanPlane);
+        const pedestal=new THREE.Mesh(new THREE.CylinderGeometry(2.05,2.35,.3,64),shellMat);pedestal.position.y=-2.55;scene.add(pedestal);
+        const halo=new THREE.Mesh(new THREE.TorusGeometry(2.15,.025,8,100),new THREE.MeshBasicMaterial({color:0x45dfff,transparent:true,opacity:.35}));halo.rotation.x=Math.PI/2;halo.position.y=-2.38;scene.add(halo);
+        let drag=false,last=0;
+        const down=e=>{drag=true;last=e.clientX},up=()=>drag=false,move=e=>{if(drag){root.rotation.y+=(e.clientX-last)*.006;last=e.clientX}};
+        el.addEventListener('pointerdown',down);window.addEventListener('pointerup',up);window.addEventListener('pointermove',move);
+        const resize=()=>{const w=el.clientWidth,h=Math.max(360,Math.min(520,w*.76));renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()};resize();const ro=new ResizeObserver(resize);ro.observe(el);
         const clock=new THREE.Clock();
-        const animate=()=>{if(!alive)return; const t=clock.getElapsedTime(); if(!drag)root.rotation.y+=.0018; core.rotation.y=t*.7; core.rotation.x=t*.35; core.scale.setScalar(1+Math.sin(t*2.2)*.06); renderer.render(scene,camera);frame=requestAnimationFrame(animate);};animate();
-        setReady(true); cleanup=()=>{ro.disconnect();el.removeEventListener('pointerdown',down);window.removeEventListener('pointerup',up);window.removeEventListener('pointermove',move);renderer.dispose();renderer.domElement.remove();};
-      }catch(e){setReady(false);}
-    })();
-    return()=>{alive=false;cancelAnimationFrame(frame);cleanup();};
-  },[]);
+        const animate=()=>{if(!alive)return;const t=clock.getElapsedTime();if(!drag)root.rotation.y+=.0014;core.rotation.y=t*.45;core.rotation.x=t*.23;core.scale.setScalar(1+Math.sin(t*2)*.045);scanPlane.position.x=Math.sin(t*.7)*1.9;
+          const explode=mode==='explode'?1:mode==='sentinel'?.35:0;left.position.x+=( -explode-left.position.x)*.035;right.position.x+=(explode-right.position.x)*.035;
+          renderer.render(scene,camera);frame=requestAnimationFrame(animate)};animate();setReady(true);
+        cleanup=()=>{ro.disconnect();el.removeEventListener('pointerdown',down);window.removeEventListener('pointerup',up);window.removeEventListener('pointermove',move);renderer.dispose();renderer.domElement.remove()};
+      }catch(e){setReady(false)}
+    })();return()=>{alive=false;cancelAnimationFrame(frame);cleanup()};
+  },[mode]);
 
-  const run=()=>{setScan(true);setTimeout(()=>setScan(false),1600);};
-  return <div className="overflow-hidden rounded-[1.6rem] border border-cyan-300/25 bg-[#030a16]">
-    <div className="flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3">
-      <div><p className="text-[10px] font-semibold tracking-[.28em] text-cyan-300">DECISION X-RAY 2.0</p><p className="mt-1 text-[11px] text-slate-400">A living model of decision architecture.</p></div>
+  const run=()=>{setScan(true);setTimeout(()=>setScan(false),1800)};
+  return <div className="overflow-hidden rounded-[1.6rem] border border-cyan-300/25 bg-[#020812]">
+    <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+      <div><p className="text-[10px] font-semibold tracking-[.3em] text-cyan-300">DECISION X-RAY 2.0</p><p className="mt-1 text-[11px] text-slate-400">See the decision before you commit.</p></div>
       <button onClick={run} className="rounded-full border border-cyan-300/40 bg-cyan-300/10 px-4 py-2 text-[10px] font-semibold text-cyan-100">{scan?'SCANNING…':'RUN X-RAY'}</button>
     </div>
     <div className="relative">
-      <div ref={mount} className="min-h-[330px] w-full cursor-grab bg-[radial-gradient(circle_at_50%_45%,rgba(28,120,190,.13),transparent_48%)] active:cursor-grabbing" aria-label="Interactive rotating 3D decision architecture"/>
-      {!ready&&<div className="absolute inset-0 grid place-items-center text-xs text-slate-500">Loading 3D architecture…</div>}
-      {scan&&<div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 animate-[pulse_1s_ease-in-out_infinite] bg-gradient-to-b from-cyan-300/0 via-cyan-300/15 to-cyan-300/0"/>}
-      <div className="absolute bottom-3 left-3 right-3 flex flex-wrap items-end justify-between gap-3">
-        <div className="rounded-xl border border-white/10 bg-[#030a16]/80 p-2 backdrop-blur">
-          <p className="text-[9px] tracking-[.16em] text-slate-500">SELECTED DECISION</p><p className="text-sm font-semibold text-amber-100">{selected} · AUTHORIZE</p>
-          <p className="mt-1 text-[9px] text-slate-300">Human reserved · runtime gate enforced · evidence retained</p>
-        </div>
-        <p className="text-[9px] text-slate-500">Drag to inspect • auto-rotates</p>
+      <div ref={mount} className="min-h-[360px] w-full cursor-grab bg-[radial-gradient(circle_at_50%_48%,rgba(25,108,166,.16),transparent_52%)] active:cursor-grabbing"/>
+      {!ready&&<div className="absolute inset-0 grid place-items-center text-xs text-slate-500">Loading decision artifact…</div>}
+      <div className="pointer-events-none absolute left-4 top-4 rounded-xl border border-white/10 bg-[#020812]/75 px-3 py-2 backdrop-blur">
+        <p className="text-[9px] tracking-[.16em] text-slate-500">SELECTED DECISION</p><p className="mt-1 text-base font-semibold text-amber-100">D07</p><p className="text-[9px] text-slate-300">Human authority required</p>
       </div>
+      <div className="pointer-events-none absolute bottom-4 right-4 text-right text-[9px] text-slate-500">Drag to rotate<br/>X-ray plane scans continuously</div>
+      {scan&&<div className="pointer-events-none absolute inset-y-0 left-1/2 w-px bg-cyan-200 shadow-[0_0_28px_10px_rgba(66,220,255,.35)]"/>}
     </div>
-    <div className="grid grid-cols-5 border-t border-white/10">
-      {layers.map(x=><button key={x} onClick={()=>setDepth(x)} className={`min-w-0 border-r border-white/10 px-1 py-3 text-[9px] last:border-r-0 ${depth===x?'bg-cyan-300/10 text-cyan-200':'text-slate-500'}`}>{x}</button>)}
+    <div className="grid grid-cols-3 border-t border-white/10">
+      {['scan','explode','sentinel'].map(x=><button key={x} onClick={()=>setMode(x)} className={`px-2 py-3 text-[9px] uppercase tracking-[.1em] ${mode===x?'bg-cyan-300/10 text-cyan-200':'text-slate-500'}`}>{x==='sentinel'?'Sentinel redesign':x}</button>)}
     </div>
-    <div className="flex items-center justify-between gap-3 border-t border-white/10 px-4 py-3 text-[10px]"><span className="text-slate-400">{copy[depth]}</span><button onClick={()=>setSelected(selected==='D07'?'D09':'D07')} className="text-cyan-200">Trace next decision →</button></div>
-  </div>;
+    <div className="flex items-center justify-between gap-3 border-t border-white/10 px-4 py-3">
+      <p className="text-[9px] text-slate-400">Cyan reveals structure. Amber marks consequential authority.</p>
+      <p className="text-[9px] font-medium text-amber-100">D07 · AUTHORITY REQUIRED</p>
+    </div>
+  </div>
 }
