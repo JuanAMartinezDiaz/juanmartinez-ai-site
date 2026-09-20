@@ -403,6 +403,12 @@ function ExecutiveHomePage() {
 
   const insights = [
     {
+      date: 'September 20, 2026',
+      title: 'Capability Is Not Authority',
+      text: 'What a bounded protected-action experiment reveals about independent authorization, human-reserved decisions, and the limits of control evidence.',
+      href: '/capability-is-not-authority/'
+    },
+    {
       date: 'September 18, 2026',
       title: 'Before You Give an AI Agent Authority',
       text: 'A practical guide to permissions, human review, recovery, and workflow improvement, with a readiness assessment for your team.',

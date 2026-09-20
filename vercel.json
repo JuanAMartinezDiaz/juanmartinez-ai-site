@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/capability-is-not-authority",
+      "destination": "/capability-is-not-authority/index.html"
+    },
+    {
+      "source": "/capability-is-not-authority/",
+      "destination": "/capability-is-not-authority/index.html"
+    },
+    {
       "source": "/before-you-give-an-ai-agent-authority",
       "destination": "/before-you-give-an-ai-agent-authority/index.html"
     },
