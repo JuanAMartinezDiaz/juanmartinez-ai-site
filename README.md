@@ -1,16 +1,86 @@
-# React + Vite
+# JuanMartinez.ai
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Public source for **[juanmartinez.ai](https://www.juanmartinez.ai)** — an executive AI-governance and applied-engineering site focused on agentic systems, decision authority, workflow intelligence, and practical human oversight.
 
-Currently, two official plugins are available:
+This repository is the publishing and interactive-experience layer for my public AI work. It is separate from private research environments and proprietary Sentinel source code.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What is here
 
-## React Compiler
+### Decision X-Ray
+An interactive Three.js study of the distinction between **AI capability** and **authority to act**. The visual model is designed to make governance boundaries inspectable rather than abstract.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### AI governance writing
+Long-form articles and practical thought leadership on topics including:
 
-## Expanding the ESLint configuration
+- capability versus authority
+- agent managers and human oversight
+- RPA-to-agentic-AI control changes
+- practical evidence and accountability
+- governed workflow modernization
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### The M.A.R.T.I.N.E.Z. Method
+A practical governance framework for preserving evidence, exceptions, accountable human judgment, and meaningful human control in AI-enabled work.
+
+### AI Build Lab
+A growing collection of applied AI missions intended to learn by building: agentic systems, workflow experiments, interactive models, and engineering studies.
+
+### Content analytics
+A protected internal analytics view and serverless route for measuring article reach, read depth, completion, and campaign behavior.
+
+## Technical stack
+
+- React 19
+- Vite 8
+- Three.js
+- Vercel
+- Vercel Analytics
+- ESLint
+- Serverless API routes
+
+## Local development
+
+```bash
+npm install
+npm run dev
+```
+
+Production build:
+
+```bash
+npm run build
+```
+
+Lint:
+
+```bash
+npm run lint
+```
+
+## Repository structure
+
+```text
+src/                         React application and interactive studies
+public/decision-xray/        Decision X-Ray media assets
+content/                     Source material for selected articles/posts
+ai-build-lab/                Applied AI Build Lab entry point
+api/                         Serverless analytics/API routes
+docs/decision-xray-review/   Acceptance evidence and visual verification
+admin/content-analytics/     Internal analytics surface
+```
+
+## Related public engineering
+
+For runnable governance reference code rather than the publishing layer, see:
+
+**[Sentinel Governed Workflow Twin](https://github.com/Morbiaus/sentinel-governed-workflow-twin)**
+
+That repository demonstrates authority arbitration, protected execution, bounded fallback, decision evidence, synthetic workflow twins, and automated governance tests.
+
+## Public-safe boundary
+
+This repository contains public website material and synthetic demonstrations. It should not contain employer/client confidential data, private credentials, or proprietary production implementations.
+
+---
+
+**Juan A. Martinez Diaz, MBA**  
+AI Governance • Agentic Systems • Workflow Intelligence • Operational Risk
