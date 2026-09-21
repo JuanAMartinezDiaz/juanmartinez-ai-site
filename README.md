@@ -72,7 +72,7 @@ admin/content-analytics/     Internal analytics surface
 
 For runnable governance reference code rather than the publishing layer, see:
 
-**[Sentinel Governed Workflow Twin](https://github.com/Morbiaus/sentinel-governed-workflow-twin)**
+**[Sentinel Governed Workflow Twin](https://github.com/JuanAMartinezDiaz/sentinel-governed-workflow-twin)**
 
 That repository demonstrates authority arbitration, protected execution, bounded fallback, decision evidence, synthetic workflow twins, and automated governance tests.
 
