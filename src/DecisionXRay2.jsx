@@ -6,7 +6,7 @@ const descriptions={
   explode:{title:'See how the parts connect.',text:'The shell panels separate and the nested assemblies move forward. Evidence supports the decision; controls constrain the route; consequential authority remains with a person.'},
   sentinel:{title:'Make the boundary explicit.',text:'In this illustrative redesign, the redundant route disappears and the evidence path becomes continuous. The amber action stops at the authority gate until you simulate approval.'}
 };
-export default function DecisionXRay2(){
+export default function DecisionXRay2({ compact = false } = {}){
   const mount=useRef(null),api=useRef(null);
   const [mode,setMode]=useState('scan'),[status,setStatus]=useState('loading'),[approved,setApproved]=useState(false);
   const [paused,setPaused]=useState(()=>typeof window!=='undefined'&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -22,6 +22,17 @@ export default function DecisionXRay2(){
   const changeMode=value=>{setMode(value);setApproved(false);api.current?.setMode(value);};
   const rescan=()=>{changeMode('scan');setPaused(false);api.current?.rescan();};
   const approve=()=>{if(mode!=='sentinel')return;api.current?.approve();setApproved(true);};
+  // The homepage uses the same approved renderer without the full study interface.
+  if (compact) return <section className="dx-shell dx-compact" aria-label="Compact Decision X-Ray preview">
+    <div className="dx-stage-wrap">
+      <div className="dx-stage" ref={mount} role="img" aria-label="Moving three-dimensional mechanical cutaway with a visible amber D07 authority core" tabIndex="0" onKeyDown={e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();api.current?.inspect(e.key==='ArrowLeft'?-1:1);}}}/>
+      {status!=='ready'&&<div className="dx-fallback" role="status">{status==='loading'?'Preparing the 3D instrument…':'The 3D renderer is unavailable in this browser. Please reload with hardware acceleration enabled.'}</div>}
+    </div>
+    <div className="dx-compact-bar">
+      <span>Drag to inspect</span>
+      <button onClick={()=>setPaused(p=>!p)} aria-pressed={paused} aria-label={paused?'Play motion':'Pause motion'}>{paused?'Play motion':'Pause motion'}</button>
+    </div>
+  </section>;
   return <section className="dx-shell" aria-label="Decision X-Ray interactive study">
     <header className="dx-brand"><a href="/">JUAN MARTINEZ<span>DECISION X-RAY</span></a><span className="dx-edition">INTERACTIVE STUDY / 01</span></header>
     <div className="dx-heading"><div><p className="dx-eyebrow">DECISION TOMOGRAPHY</p><h2>The decision, revealed.</h2></div><p>A precision cutaway of the evidence, controls<br className="dx-desktop"/> and human authority inside one decision.</p></div>

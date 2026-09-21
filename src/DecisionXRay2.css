@@ -18,3 +18,15 @@
 @media(max-width:800px){.dx-annotations{display:none}.dx-heading{align-items:start;flex-direction:column;gap:16px}.dx-heading>p{max-width:440px}.dx-desktop{display:none}.dx-stage{height:520px}.dx-material{display:none}}
 @media(max-width:520px){.dx-shell{padding:19px 16px 16px}.dx-brand{padding-bottom:17px;font-size:10px}.dx-brand a{gap:12px}.dx-brand a span{font-size:8px;letter-spacing:.1em;padding-left:12px}.dx-edition{display:none}.dx-heading{margin:26px 0 23px}.dx-heading h2{font-size:35px}.dx-heading>p{font-size:12px;line-height:1.7}.dx-stage{height:430px}.dx-stage-caption{top:17px;left:16px;font-size:8px}.dx-viewhint{left:16px;bottom:43px;font-size:9px}.dx-state{left:16px;right:auto;bottom:20px;font-size:10px}.dx-controls{padding:12px 0;gap:5px}.dx-modes{width:100%;gap:2px}.dx-modes button{padding:0 8px;flex:1;justify-content:center;gap:5px}.dx-modes button span{font-size:10px}.dx-modes button{font-size:8px}.dx-motion{width:100%;justify-content:space-between}.dx-motion button{font-size:11px;padding:10px 8px}.dx-story{grid-template-columns:1fr;gap:14px;padding:22px 0}.dx-story>p{font-size:12px}.dx-story h3{font-size:25px}.dx-foot{flex-direction:column;gap:4px}.dx-foot p{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.dx-shell *{transition:none!important}}
+
+/* Small homepage preview. The dedicated study keeps its original full-size layout. */
+.dx-study-card{width:100%;max-width:380px;margin-inline:auto;overflow:hidden;scroll-margin-top:150px}
+.dx-study-link{text-decoration:none}
+.dx-study-link:hover{background:rgba(131,214,221,.035)}
+.dx-shell.dx-compact{width:100%;max-width:none;margin:0;padding:0;border:0;border-radius:0;background:transparent}
+.dx-compact .dx-stage-wrap{border:0;border-radius:0}
+.dx-compact .dx-stage{height:224px;min-height:0}
+.dx-compact .dx-fallback{padding:20px;font-size:12px}
+.dx-compact-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;padding:0 14px;border-top:1px solid #24323c;color:#9aaab3;font-size:10px}
+.dx-compact-bar button{min-height:44px;padding:0 6px;border:0;background:transparent;color:#c4d8df;font-size:11px}
+.dx-compact-bar button:hover{color:var(--dx-cyan)}

@@ -480,11 +480,14 @@ function ExecutiveHomePage() {
               </div>
             </div>
             <aside className="rounded-[2rem] border border-[color:var(--oc-line)] bg-[rgba(8,16,31,0.76)] p-5 shadow-[0_18px_50px_rgba(0,0,0,0.3),0_0_24px_rgba(67,231,255,0.08)] md:p-6">
-              <a href="?view=decision-xray" className="block rounded-2xl border border-cyan-200/30 bg-cyan-200/5 px-5 py-7 text-cyan-100">
+              <div id="decision-xray" className="dx-study-card rounded-2xl border border-cyan-200/30 bg-cyan-200/5">
+              <a href="?view=decision-xray" className="dx-study-link block px-4 pt-4 pb-2 text-cyan-100">
                 <span className="block text-xs uppercase tracking-widest text-cyan-300">Interactive 3D study</span>
-                <span className="mt-3 block text-xl">Inspect the Decision X-Ray →</span>
+                <span className="mt-2 block text-lg">Inspect the Decision X-Ray →</span>
                 <span className="mt-2 block text-sm text-stone-400">Evidence, controls and human authority, revealed in a precision cutaway.</span>
               </a>
+                <DecisionXRay2 compact />
+              </div>
               <div className="mt-6 flex items-center gap-4">
                 <div aria-hidden="true" className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[color:var(--oc-line-strong)] bg-[linear-gradient(135deg,rgba(255,203,107,0.16),rgba(67,231,255,0.14))] text-sm font-semibold tracking-[0.14em] text-white">JMD</div>
                 <div>
@@ -502,10 +505,6 @@ function ExecutiveHomePage() {
               </nav>
             </aside>
           </div>
-        </section>
-
-        <section id="decision-xray" className="mx-auto max-w-7xl pb-16" aria-label="Decision X-Ray study">
-          <DecisionXRay2 />
         </section>
 
         <section id="impact" className="border-y border-[color:var(--oc-line)] bg-[rgba(10,18,37,0.42)]">
