@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/research",
+      "destination": "/research/index.html"
+    },
+    {
+      "source": "/research/",
+      "destination": "/research/index.html"
+    },
+    {
       "source": "/capability-is-not-authority",
       "destination": "/capability-is-not-authority/index.html"
     },
