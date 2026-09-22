@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/delegating-work-to-ai",
+      "destination": "/delegating-work-to-ai/index.html"
+    },
+    {
+      "source": "/delegating-work-to-ai/",
+      "destination": "/delegating-work-to-ai/index.html"
+    },
+    {
       "source": "/capability-is-not-authority",
       "destination": "/capability-is-not-authority/index.html"
     },

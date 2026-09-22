@@ -1,10 +1,12 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+async function start() {
+  const path = location.pathname.replace(/\/$/, '') || '/';
+  const homepage = (path === '/' || path === '/index.html') && new URLSearchParams(location.search).get('view') !== 'decision-xray';
+  const [{ default: Page }] = homepage
+    ? await Promise.all([import('./Homepage.jsx'), import('./homepage.css')])
+    : await Promise.all([import('./App.jsx'), import('./index.css')]);
+  createRoot(document.getElementById('root')).render(<StrictMode><Page /></StrictMode>);
+}
+start();

@@ -1921,11 +1921,11 @@ export default function JuanProfessionalLandingPage() {
             <div className="text-sm text-[var(--oc-muted)]">AI governance, technology risk, operational resilience, and executive leadership</div>
           </div>
           <nav className="hidden gap-6 text-sm text-[var(--oc-muted)] md:flex">
-            <a href="#about" className="hover:text-[var(--oc-cyan)]">About</a>
-            <a href="#impact" className="hover:text-[var(--oc-cyan)]">Impact</a>
-            <a href="#flagship" className="hover:text-[var(--oc-cyan)]">Flagship Perspective</a>
+            <a href="/#about" className="hover:text-[var(--oc-cyan)]">About</a>
+            <a href="/#about" className="hover:text-[var(--oc-cyan)]">Impact</a>
+            <a href="/#research" className="hover:text-[var(--oc-cyan)]">Flagship Perspective</a>
             <a href="/martinez-method" className="hover:text-[var(--oc-cyan)]">M.A.R.T.I.N.E.Z. Method</a>
-            <a href="#point-of-view" className="hover:text-[var(--oc-cyan)]">Point of View</a>
+            <a href="/#research" className="hover:text-[var(--oc-cyan)]">Point of View</a>
             <a href="#contact" onClick={() => trackContactIntent('contact_section')} className="hover:text-[var(--oc-cyan)]">Contact</a>
           </nav>
         </div>
@@ -1953,7 +1953,7 @@ export default function JuanProfessionalLandingPage() {
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <a
-                  href="#flagship"
+                  href="/#research"
                   className="rounded-2xl border border-[color:var(--oc-line-strong)] bg-[linear-gradient(90deg,var(--oc-cyan),var(--oc-blue))] px-5 py-3 text-sm font-medium text-[#06101f] shadow-[0_0_24px_rgba(67,231,255,0.18)] transition hover:-translate-y-0.5"
                 >
                   Read the flagship perspective
