@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/ai-agent-control-evidence",
+      "destination": "/ai-agent-control-evidence/index.html"
+    },
+    {
+      "source": "/ai-agent-control-evidence/",
+      "destination": "/ai-agent-control-evidence/index.html"
+    },
+    {
       "source": "/delegating-work-to-ai",
       "destination": "/delegating-work-to-ai/index.html"
     },
