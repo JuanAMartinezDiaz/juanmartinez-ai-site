@@ -4,6 +4,17 @@ Public source for **[juanmartinez.ai](https://www.juanmartinez.ai)** — an exec
 
 This repository is the publishing and interactive-experience layer for my public AI work. It is separate from private research environments and proprietary Sentinel source code.
 
+## Current Sentinel context
+
+I am the founder of **Bounded Agentic Intelligence (BAI)**. Sentinel is the current focus: synthetic workflow analysis, explicit agent authority, human escalation, and evidence-backed evaluation of proposed workflow redesign.
+
+- **[Project portfolio and acceptance roadmap](https://github.com/JuanAMartinezDiaz/JuanAMartinezDiaz/blob/main/PROJECTS.md)**
+- **[Public executable reference](https://github.com/JuanAMartinezDiaz/sentinel-governed-workflow-twin)** — Python governance checks and execution-evidence export
+- **[Reference visualization](https://juanamartinezdiaz.github.io/sentinel-governed-workflow-twin/)** — an explanatory browser experience, not proof of backend enforcement
+- **[Product demonstration destinations](docs/sentinel-links.md)** — separate review-access product site; current access requirements apply
+
+Reference tests, illustrative benchmark figures, and browser animations do not establish production operating effectiveness. See the [release-readiness framework](https://github.com/JuanAMartinezDiaz/sentinel-governed-workflow-twin/blob/main/docs/release-readiness-framework.md) for distinct demonstration, assessment, and production gates.
+
 ## What is here
 
 ### Decision X-Ray
