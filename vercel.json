@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/the-operating-discipline-agentic-ai-needs",
+      "destination": "/the-operating-discipline-agentic-ai-needs/index.html"
+    },
+    {
+      "source": "/the-operating-discipline-agentic-ai-needs/",
+      "destination": "/the-operating-discipline-agentic-ai-needs/index.html"
+    },
+    {
       "source": "/ai-agent-control-evidence",
       "destination": "/ai-agent-control-evidence/index.html"
     },

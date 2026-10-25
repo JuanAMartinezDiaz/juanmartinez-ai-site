@@ -9,12 +9,13 @@ import '@fontsource/manrope/500.css';
 import '@fontsource/manrope/600.css';
 
 const articles = [
-  { title: 'Can Your Board Prove Its AI Agents Are Under Control?', type: 'New feature · Interactive scorecard', href: '/ai-agent-control-evidence/', description: 'Assess six domains of control evidence, identify gaps, and take away a practical action plan.' },
+  { title: 'The Operating Discipline Agentic AI Needs', type: 'New feature · Agentic AI governance', href: '/the-operating-discipline-agentic-ai-needs/', description: 'Define agent authority, build usable evidence, rehearse recovery, and evaluate the complete workflow.' },
+  { title: 'Can Your Board Prove Its AI Agents Are Under Control?', type: 'Interactive scorecard', href: '/ai-agent-control-evidence/', description: 'Assess six domains of control evidence, identify gaps, and take away a practical action plan.' },
   { title: 'Capability Is Not Authority', type: 'Research note', href: '/capability-is-not-authority/', description: 'A bounded experiment in AI authority, with the results and limitations made explicit.' },
   { title: 'Before You Give an AI Agent Authority', type: 'Practical framework', href: '/before-you-give-an-ai-agent-authority/', description: 'A readiness worksheet for defining permissions, oversight, and the evidence required before delegation.' },
-  { title: 'Stop Starting with AI. Start with the Workflow.', type: 'Perspective', href: '/stop-starting-with-ai-start-with-the-workflow', description: 'Begin with how work actually moves, where judgment is needed, and what a useful improvement would mean.' },
 ];
 const archive = [
+  ['Stop Starting with AI. Start with the Workflow.', '/stop-starting-with-ai-start-with-the-workflow'],
   ['Agent Managers: The Next Layer of Human Oversight', '/agent-managers-human-oversight/'],
   ['The Work Did Not Become Smaller When the Uniform Came Off', '/translate-your-service'],
   ['Why Good Experience Becomes Invisible During a Job Search', '/career-recovery'],
@@ -50,7 +51,7 @@ export default function Homepage() {
           <h1 id="hero-title">The operating discipline<br className="desktop-break"/> behind accountable AI.</h1>
           <p className="hero-intro">My work brings operational leadership and independent risk oversight to the design of AI-enabled workflows. Through Sentinel, I examine where AI can improve performance and what evidence leaders need before expanding its authority.</p>
           <div className="hero-actions"><a className="button primary" href="#research">Read the research <Arrow/></a><a className="button secondary" href="#sentinel">Explore Sentinel <Arrow/></a></div>
-          <article className="latest-research"><p className="eyebrow">Latest research</p><h2><a href={articles[0].href}>{articles[0].title}</a></h2><time dateTime="2026-10-15">15 October 2026</time><p>{articles[0].description}</p><a className="text-link" href={articles[0].href}>Read the article <Arrow/></a></article>
+          <article className="latest-research"><p className="eyebrow">Latest research</p><h2><a href={articles[0].href}>{articles[0].title}</a></h2><time dateTime="2026-10-25">25 October 2026</time><p>{articles[0].description}</p><a className="text-link" href={articles[0].href}>Read the article <Arrow/></a></article>
         </div></div>
         <div className="identity-strip"><div><p>Juan A. Martinez Diaz, MBA</p><span>Former Wells Fargo Vice President · Retired U.S. Army Sergeant Major</span></div><span className="identity-principles">People / Operations / Accountability</span></div>
       </section>
