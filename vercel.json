@@ -107,13 +107,13 @@
     },
     {
       "source": "/sentinel/demo",
-      "destination": "https://martinez-applied-intelligence.morbiaus.chatgpt.site/demo.html",
-      "permanent": true
+      "destination": "https://sentinel-reference-demo.vercel.app/",
+      "permanent": false
     },
     {
       "source": "/sentinel/demo.html",
-      "destination": "https://martinez-applied-intelligence.morbiaus.chatgpt.site/demo.html",
-      "permanent": true
+      "destination": "https://sentinel-reference-demo.vercel.app/",
+      "permanent": false
     },
     {
       "source": "/sentinel/about.html",
