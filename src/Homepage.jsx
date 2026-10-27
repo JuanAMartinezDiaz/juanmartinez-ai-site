@@ -49,7 +49,7 @@ export default function Homepage() {
         <div className="hero"><div className="hero-copy">
           <p className="eyebrow">AI governance · Operational leadership</p>
           <h1 id="hero-title">The operating discipline<br className="desktop-break"/> behind accountable AI.</h1>
-          <p className="hero-intro">My work brings operational leadership and independent risk oversight to the design of AI-enabled workflows. Through Sentinel, I examine where AI can improve performance and what evidence leaders need before expanding its authority.</p>
+          <p className="hero-intro">My work brings operational leadership, independent risk oversight, and AI governance to the design of AI-enabled workflows. Through Sentinel, I examine where AI can improve performance and what evidence leaders need before expanding its authority.</p>
           <div className="hero-actions"><a className="button primary" href="#research">Read the research <Arrow/></a><a className="button secondary" href="#sentinel">Explore Sentinel <Arrow/></a></div>
           <article className="latest-research"><p className="eyebrow">Latest research</p><h2><a href={articles[0].href}>{articles[0].title}</a></h2><time dateTime="2026-10-25">25 October 2026</time><p>{articles[0].description}</p><a className="text-link" href={articles[0].href}>Read the article <Arrow/></a></article>
         </div></div>
