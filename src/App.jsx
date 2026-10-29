@@ -637,7 +637,7 @@ function ExecutiveHomePage() {
       <footer className="border-t border-[color:var(--oc-line)] bg-[rgba(8,16,31,0.45)]">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 py-8 text-sm leading-6 text-stone-500 md:flex-row md:items-center md:justify-between">
           <p>© 2026 Juan A. Martinez Diaz. All rights reserved.</p>
-          <p className="max-w-2xl md:text-right">Privacy-conscious analytics measure general engagement. No advertising trackers, remarketing pixels, or LinkedIn Insight Tag are used.</p>
+          <p className="max-w-2xl md:text-right">Cookie-free analytics measure aggregate engagement. Optional Google Analytics cookies measure returning browsers and campaigns after consent. No advertising pixels or remarketing are enabled.</p>
         </div>
       </footer>
       <Analytics />
@@ -2130,7 +2130,7 @@ export default function JuanProfessionalLandingPage() {
               <a href="https://www.linkedin.com/in/juan-a-martinez-diaz-50943411" onClick={() => trackContactIntent('linkedin_profile')} className="rounded-2xl border border-stone-700 px-4 py-3 transition hover:border-stone-500">LinkedIn profile</a>
             </div>
             <p className="mt-6 max-w-3xl text-xs leading-6 text-stone-500">
-              This site uses privacy-conscious analytics to understand page visits, traffic sources, campaign performance, and general engagement. It does not use advertising trackers, remarketing pixels, or LinkedIn Insight Tag.
+              This site uses cookie-free aggregate analytics and optional Google Analytics cookies, with your consent, to measure returning browsers and campaigns. No advertising trackers, remarketing pixels, or LinkedIn Insight Tag are enabled. See the analytics settings and privacy details.
             </p>
           </div>
         </section>
