@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/an-ai-agent-should-not-control-its-own-authority",
+      "destination": "/an-ai-agent-should-not-control-its-own-authority/index.html"
+    },
+    {
+      "source": "/an-ai-agent-should-not-control-its-own-authority/",
+      "destination": "/an-ai-agent-should-not-control-its-own-authority/index.html"
+    },
+    {
       "source": "/the-operating-discipline-agentic-ai-needs",
       "destination": "/the-operating-discipline-agentic-ai-needs/index.html"
     },
