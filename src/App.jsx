@@ -372,7 +372,7 @@ function ExecutiveHomePage() {
       title: 'Project Sentinel',
       text: 'A governance and workflow simulation environment for comparing human and agentic operating models before an organization automates or redesigns the work. Sentinel makes control boundaries, approvals, evidence lineage, escalation paths, monitoring, recovery, and accountable ownership visible.',
       linkText: 'Discuss Project Sentinel',
-      href: 'mailto:sgmmartinez@gmail.com?subject=Project%20Sentinel%20Discussion'
+      href: 'mailto:juan@boundedagenticai.com?subject=Project%20Sentinel%20Discussion'
     },
     {
       eyebrow: 'Practical learning',
@@ -626,8 +626,8 @@ function ExecutiveHomePage() {
               I welcome conversations about executive leadership, advisory work, practical AI governance, technology risk, operational resilience, and Project Sentinel in regulated or high-consequence environments.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <a href="mailto:sgmmartinez@gmail.com" onClick={() => recordContact('email')} className="rounded-2xl border border-[color:var(--oc-line-strong)] bg-[linear-gradient(90deg,var(--oc-cyan),var(--oc-blue))] px-5 py-3 text-sm font-medium text-[#06101f]">Email Juan</a>
-              <a href="mailto:sgmmartinez@gmail.com?subject=Project%20Sentinel%20Discussion" onClick={() => recordContact('sentinel')} className="rounded-2xl border border-[color:var(--oc-line)] px-5 py-3 text-sm font-medium text-white hover:border-[color:var(--oc-line-strong)]">Request a Sentinel Discussion</a>
+              <a href="mailto:juan@boundedagenticai.com" onClick={() => recordContact('email')} className="rounded-2xl border border-[color:var(--oc-line-strong)] bg-[linear-gradient(90deg,var(--oc-cyan),var(--oc-blue))] px-5 py-3 text-sm font-medium text-[#06101f]">Email Juan</a>
+              <a href="mailto:juan@boundedagenticai.com?subject=Project%20Sentinel%20Discussion" onClick={() => recordContact('sentinel')} className="rounded-2xl border border-[color:var(--oc-line)] px-5 py-3 text-sm font-medium text-white hover:border-[color:var(--oc-line-strong)]">Request a Sentinel Discussion</a>
               <a href="https://www.linkedin.com/in/juan-a-martinez-diaz-50943411" onClick={() => recordContact('linkedin')} className="rounded-2xl border border-[color:var(--oc-line)] px-5 py-3 text-sm font-medium text-white hover:border-[color:var(--oc-line-strong)]">LinkedIn Profile</a>
             </div>
           </div>
@@ -2126,7 +2126,7 @@ export default function JuanProfessionalLandingPage() {
               If your work involves enterprise artificial intelligence adoption, technology risk, governance, control quality, or operational resilience, there is likely something useful to discuss.
             </p>
             <div className="mt-8 flex flex-wrap gap-4 text-sm text-stone-200">
-              <a href="mailto:sgmmartinez@gmail.com" onClick={() => trackContactIntent('email_click')} className="rounded-2xl border border-stone-700 px-4 py-3 transition hover:border-stone-500">Email: sgmmartinez@gmail.com</a>
+              <a href="mailto:juan@boundedagenticai.com" onClick={() => trackContactIntent('email_click')} className="rounded-2xl border border-stone-700 px-4 py-3 transition hover:border-stone-500">Email: juan@boundedagenticai.com</a>
               <a href="https://www.linkedin.com/in/juan-a-martinez-diaz-50943411" onClick={() => trackContactIntent('linkedin_profile')} className="rounded-2xl border border-stone-700 px-4 py-3 transition hover:border-stone-500">LinkedIn profile</a>
             </div>
             <p className="mt-6 max-w-3xl text-xs leading-6 text-stone-500">
