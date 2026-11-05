@@ -9,6 +9,7 @@ import '@fontsource/manrope/500.css';
 import '@fontsource/manrope/600.css';
 
 const articles = [
+  { title: 'When AI Can Edit Another Model, Who Approves the Repair?', type: 'New feature · From Principle to Proof', href: '/when-ai-can-edit-another-model-who-approves-the-repair/', description: 'The evidence behind Astra’s Qwen repair and the controls needed before accepting a model change.' },
   { title: 'An AI Agent Should Not Control Its Own Authority', type: 'New feature · From Principle to Proof', href: '/an-ai-agent-should-not-control-its-own-authority/', description: 'What NIST’s agent identity tenets mean for governance, control testing, and evidence.' },
   { title: 'The Operating Discipline Agentic AI Needs', type: 'Feature · Agentic AI governance', href: '/the-operating-discipline-agentic-ai-needs/', description: 'Define agent authority, build usable evidence, rehearse recovery, and evaluate the complete workflow.' },
   { title: 'Can Your Board Prove Its AI Agents Are Under Control?', type: 'Interactive scorecard', href: '/ai-agent-control-evidence/', description: 'Assess six domains of control evidence, identify gaps, and take away a practical action plan.' },
@@ -52,7 +53,7 @@ export default function Homepage() {
           <h1 id="hero-title">The operating discipline<br className="desktop-break"/> behind accountable AI.</h1>
           <p className="hero-intro">My work brings operational leadership, independent risk oversight, and AI governance to the design of AI-enabled workflows. Through Sentinel, I examine where AI can improve performance and what evidence leaders need before expanding its authority.</p>
           <div className="hero-actions"><a className="button primary" href="#research">Read the research <Arrow/></a><a className="button secondary" href="#sentinel">Explore Sentinel <Arrow/></a></div>
-          <article className="latest-research"><p className="eyebrow">Latest research</p><h2><a href={articles[0].href}>{articles[0].title}</a></h2><time dateTime="2026-10-30">30 October 2026</time><p>{articles[0].description}</p><a className="text-link" href={articles[0].href}>Read the article <Arrow/></a></article>
+          <article className="latest-research"><p className="eyebrow">Latest research</p><h2><a href={articles[0].href}>{articles[0].title}</a></h2><time dateTime="2026-11-05">5 November 2026</time><p>{articles[0].description}</p><a className="text-link" href={articles[0].href}>Read the article <Arrow/></a></article>
         </div></div>
         <div className="identity-strip"><div><p>Juan A. Martinez Diaz, MBA</p><span>Former Wells Fargo Vice President · Retired U.S. Army Sergeant Major</span></div><span className="identity-principles">People / Operations / Accountability</span></div>
       </section>
