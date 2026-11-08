@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { Analytics } from '@vercel/analytics/react';
 
 async function start() {
   const path = location.pathname.replace(/\/$/, '') || '/';
@@ -7,6 +8,11 @@ async function start() {
   const [{ default: Page }] = homepage
     ? await Promise.all([import('./Homepage.jsx'), import('./homepage.css')])
     : await Promise.all([import('./App.jsx'), import('./index.css')]);
-  createRoot(document.getElementById('root')).render(<StrictMode><Page /></StrictMode>);
+  createRoot(document.getElementById('root')).render(
+    <StrictMode>
+      <Page />
+      <Analytics />
+    </StrictMode>
+  );
 }
 start();
