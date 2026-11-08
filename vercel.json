@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/agentic-ai-governance-readiness",
+      "destination": "/agentic-ai-governance-readiness/index.html"
+    },
+    {
+      "source": "/agentic-ai-governance-readiness/",
+      "destination": "/agentic-ai-governance-readiness/index.html"
+    },
+    {
       "source": "/an-ai-agent-should-not-control-its-own-authority",
       "destination": "/an-ai-agent-should-not-control-its-own-authority/index.html"
     },
