@@ -196,7 +196,7 @@
     emailNode.href = 'mailto:juan@boundedagenticai.com?subject=' + subject + '&body=' + body;
     result.hidden = false;
     result.focus();
-    if (window.va) window.va('event', { name: 'readiness_check_complete', data: { page_path: location.pathname, readiness_band: band, score: score } });
+    if (window.va) window.va('event', { name: 'readiness_check_complete', data: { page_path: location.pathname } });
   });
 })();
 </script>
