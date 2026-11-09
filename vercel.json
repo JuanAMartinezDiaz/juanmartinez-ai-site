@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/sentinel-case-study",
+      "destination": "/sentinel-case-study/index.html"
+    },
+    {
+      "source": "/sentinel-case-study/",
+      "destination": "/sentinel-case-study/index.html"
+    },
+    {
       "source": "/agentic-ai-governance-readiness",
       "destination": "/agentic-ai-governance-readiness/index.html"
     },
